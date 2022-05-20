@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/ui.css">
+      <link href="https://fonts.googleapis.com/css2?family=Merienda+One&display=swap" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+         crossorigin="anonymous"></script>
+      <title>Hud Vorp</title>
+   </head>
+   <body>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      
+      
+        <div id="statusHud">			
+            <div id="varHealth" class="bar">
+                <div id="boxSetHealth"></div>
+            </div>
+        </div>
+
+	  <!-- <div class="day-place">
+		
+	  </div>
+	  <div class="temp-job">
+		
+	  </div> -->
+
+      <!-- <img src="img/controls.png" alt="" class="phys-controls"> -->
+
+      <div class="header-bg">
+         <div class="container-top">
+            <div class="cols-wrapper flex-end">
+               <div class="Header__inner__3hvj8">
+               </div>
+            </div>
+         </div>
+      </div>
+      <img src="img/compass.png" alt="" class="compass">
+      <div class="footer-bg">
+          <div class="f-container">
+          </div>         
+        <div class="Header__player__2Slh1">
+            <div class="Header__balance__ydtLu">
+               <div class="Header__money__1WhKc">
+                  <span class="Header__roleToken__1QKqI" tabindex="0"><span class="Header__roleTokenIcon__3wGOj"></span><span id="rol">0</span></span>
+                  <span class="Header__gold__X-zov" tabindex="0"><span class="Header__goldIcon__1ypvO"></span>                 
+                  <span id="gold">0<span class="Header__decimal__1eony2">0</span></span>
+                  </span>
+                  <span class="Header__cash__3sq0r" tabindex="0">₱<span id="money">0<span>.</span><span class="Header__decimal__1eony">0</span></span>
+                  </span>
+               </div>
+            </div>
+         </div>
+
+         <div class="c-row">
+            <span id="location">
+                location
+             </span>
+             <span id="day">
+                day
+             </span>
+         </div>
+         <div class="n-row">
+            <div class="n-col job">
+               <span id="textjob">
+                   job
+               </span>
+            </div>
+            <div class="n-col id" style="text-align: right;">
+                <span id="textid">ID 0</span>
+            </div>
+            <div class="n-col space">
+                
+            </div>
+            <div class="n-col temp">
+               <span id="texttemp">
+                   temp
+               </span>
+            </div>
+         </div>
+         <div class="n-xp" id="info">
+         </div>
+      </div>
+      
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script src="js/progressbar.js"></script>
+      <script src="js/progressbar.min.js"></script>
+
+      <script>
+		window.addEventListener('message', function (event) {
+            let item = event.data;
+
+			switch (item.action) {
+				case 'updateStatusHud':
+                    $("#texttemp").html(item.temp + " °C");
+                    $("#textjob").html(item.job);
+                    $("#location").html(item.location);
+                    $("#day").html(item.day);
+                    
+                    if (item.temp >= 29){
+					    $("#texttemp").css("color", "rgb(237, 57, 12)");
+                    } else if (item.temp >= 21 && item.temp <= 28){
+					    $("#texttemp").css("color", "rgb(227, 140, 48)");
+                        
+                    } else if (item.temp >= 16 && item.temp <= 20){
+					    $("#texttemp").css("color", "rgb(77, 160, 147)");
+
+                    } else if (item.temp >= 11 && item.temp <= 15){
+					    $("#texttemp").css("color", "rgb(22, 217, 194)");
+                    } else if (item.temp <= 10){
+					    $("#texttemp").css("color", "rgb(12, 128, 237)");
+                    }
+
+					$("body").css("display", item.show ? "block" : "none");
+					$("#boxSetHealth").css("width", item.health + "%");
+					$("#boxSetArmour").css("width", item.armour + "%");
+
+					widthHeightSplit(item.hunger, $("#boxSetHunger"));
+					widthHeightSplit(item.thirst, $("#boxSetThirst"));
+					widthHeightSplit(item.oxygen, $("#boxSetOxygen"));
+					widthHeightSplit(item.stress, $("#boxSetStress"));
+			}
+			});
+
+			function widthHeightSplit(value, ele) {
+			let height = 25.5;
+			let eleHeight = (value / 100) * height;
+			let leftOverHeight = height - eleHeight;
+
+			ele.css("height", eleHeight + "px");
+			ele.css("top", leftOverHeight + "px");
+			};
+			
+	</script>
+
+      <script type="text/javascript">
+         $("document").ready(function() {            
+             var info = document.getElementById("info");
+             var bar = new ProgressBar.Line(info, {
+                 strokeWidth: 1,
+                 easing: 'easeInOut',
+                 duration: 1400,
+                 color: '#48575f',
+                 trailColor: 'transparent',
+                 trailWidth: 4,
+                 svgStyle: {
+                     borderRadius: '2px',
+                     width: '100%',
+                     height: '10px'
+                 },
+                 from: {
+                     color: '#48575f'
+                 },
+                 to: {
+                     color: '#30393e'
+                 },
+                 step: (state, bar) => {
+                     bar.path.setAttribute('stroke', state.color);
+                 }
+             });
+         
+             //bar.animate(1.0); // Number from 0.0 to 1.0   
+         
+         const keyCodes = [88,66,74,73,20];
+         
+         function changeDisplayState(selector, disp){
+         const elements = document.querySelectorAll(selector);
+         elements.forEach(e => {
+         e.style.display = disp;
+         });
+         }	
+         
+         window.addEventListener("keydown", event=>{	
+         if (!keyCodes.includes(event.keyCode)) return;
+         changeDisplayState("#actions, #actions1, #actions2, #actions3, #actions4, #emotes1", "none");			
+         switch(event.keyCode){
+         
+         case 88: // X
+         changeDisplayState("#actions1", "block");				
+         break;	
+         
+         case 66: // B
+         changeDisplayState("#actions2", "block");				
+         break;
+         
+         case 74: // J
+         changeDisplayState("#actions3", "block");				
+         break;
+         
+         case 73: // I
+         changeDisplayState("#actions4", "block");				
+         break;
+         
+         case 20: // CAPS LOCK
+         changeDisplayState("#emotes1, #actions", "block");				
+         break;
+         
+         default:					
+         changeDisplayState("#actions", "block");				
+         break;
+         
+         }
+         });
+         
+         window.addEventListener("keyup", event=>{
+         if (keyCodes.includes(event.keyCode)) {
+         changeDisplayState("#actions", "block");			
+         changeDisplayState("#actions1, #actions2, #actions3, #actions4, #emotes1",  "none");		
+         }
+         });
+             
+         
+             window.addEventListener("message", function(event) {
+                 let item = event.data;
+                 if (item !== undefined && item.type === "ui") {
+                     if (item.action === "update") {
+         
+                        var ints1 = Math.trunc(item.moneyquanty + 0.00);
+                        var decimal1 = item.moneyquanty.toFixed(2).toString().substr(-2);
+                        var money = document.getElementById("money").innerHTML = ints1 + "<span class=\"Header__decimal__1eony\">" + decimal1 + "</span>";
+         
+                        var ints2 = Math.trunc(item.goldquanty);
+                        var decimal2 = item.goldquanty.toFixed(2).toString().substr(-2);
+                        var gold = document.getElementById("gold").innerHTML = ints2 + "<span class=\"Header__decimal__1eony2\">" + decimal2 + "</span>";
+         
+                         var ints3 = Math.trunc(item.rolquanty);
+                         var rol = document.getElementById("rol").innerHTML = ints3;
+         
+                         var ints4 = item.serverId;
+                         document.getElementById("textid").innerText = "ID " + ints4;
+         
+                         var ints5 = item.xp / 1000; //Divide by 1000 is 1 lvl
+                         var newvalue = ints5 % 1;
+                         var lvl = Math.trunc(ints5)
+         
+                         bar.animate(newvalue);
+                         document.getElementById("texttemp").innerText = "temp: ?" + lvl;
+         
+                     }
+                     if (item.action === "setmoney") {
+                         var ints = Math.trunc(item.moneyquanty);
+                         var decimal = item.moneyquanty.toFixed(2).toString().substr(-2);
+                         var money = document.getElementById("money").innerHTML = ints + "<span class=\"Header__decimal__1eony\">" + decimal + "</span>";
+                     }
+                     if (item.action === "setgold") {
+                         var ints = Math.trunc(item.goldquanty);
+                         var decimal = item.goldquanty.toFixed(2).toString().substr(-2);
+                         var gold = document.getElementById("gold").innerHTML = ints + "<span class=\"Header__decimal__1eony2\">" + decimal + "</span>";
+                     }
+                     if (item.action === "setrol") {
+                         var ints = Math.trunc(item.rolquanty);
+                         var rol = document.getElementById("rol").innerHTML = ints;
+                     }
+                     if (item.action === "setxp") {
+                         var ints = item.xp / 1000; //Divide by 1000 is 1 lvl
+                         var newvalue = ints % 1;
+                         var lvl = Math.trunc(ints)
+         
+                         bar.animate(newvalue);
+                         document.getElementById("textinfo").innerText = "temp: ?" + lvl;
+                     }
+                     if (item.action === "hide") {
+                         document.body.style.display = "none";
+                     }
+                     if (item.action === "show") {
+                         document.body.style.display = "block";
+                     }
+         
+                 }
+             });
+         
+         });
+      </script>
+   </body>
+</html>

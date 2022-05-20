@@ -1,0 +1,284 @@
+
+
+*{
+    transition: all 0.4s;
+}
+
+body{
+    display: flex;
+    overflow: hidden;
+    align-items: flex-end;
+    flex-flow: column wrap;
+    margin: 5px !important;
+    padding: 0 !important;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+html, body {
+	height: 100% !important;
+}
+
+.c-row{
+    position: absolute;
+	display: flex;
+    flex-direction: column;
+	height: 46px;
+	width: 100%;
+    max-width: 59vw;
+}
+
+.c-row span#location{
+    color: #b1a093;
+}
+
+.c-row span#day{
+    color: #c48b5f;
+}
+
+.c-row span{
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    overflow-x: hidden;
+    height: 100%;
+    font-size: 13px;
+}
+
+.n-row{
+	display: flex;
+	height: 25px;
+	width: 100%;
+    max-width: 34vw;
+}
+
+.n-col{
+    display: flex;
+    align-items: center;
+}
+
+.n-col.job{
+    display: flex;
+    justify-content: center;
+    width: 116px;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.n-col.job span{
+    text-transform: uppercase !important;
+}
+
+.n-col.space{
+    width: 274px;
+}
+
+.n-col.id{
+    width: 60px;
+    text-align: left !important;
+    margin-left: 1.5rem;
+}
+
+.n-col.temp{
+    width: 57px;
+    font-size: 12px;
+    overflow: hidden;
+    height: 100%;
+}
+
+#textjob, #texttemp{
+    height: 10px;
+    color: #b1a093;
+}
+
+#statusHud {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+	display: flex;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+#varHealth {
+    z-index: 99 !important;
+	display: flex;
+    margin-bottom: -7px;
+    transform: scale(0.7);
+    max-width: 210px;
+    background-image: url("../img/health-bg-2.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 43px;
+    padding: 3px 11px;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 2px - 4px);
+} 
+#varArmor {
+	width: calc(25% - 4px - 4px);
+
+}
+#varHealth > .barIcon,
+#varArmor > .barIcon {
+	width: 15%;
+}
+#varStress {
+	margin-right: 0px !important;
+}
+
+#boxSetHealth{
+	width: 100%;
+	max-width: 206px;
+}
+
+#varHealth > #boxSetHealth {
+    margin-left: -10px;
+    height: 35px;
+	background-image: url("../img/life-bg-2.png");
+	background-size: cover;
+}
+#varArmor > #boxSetArmour {
+	background: rgb(66, 137, 255);
+}
+
+#varHunger{    
+    right: 140px;
+}
+
+
+#varThirst{
+    left:  140px;
+}
+
+#varHunger, #varThirst{
+	z-index: 9;
+    border-radius: 55px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#varHunger > #boxSetHunger {    
+    border-radius: 55px;
+	/*background: rgb(210, 155, 67);*/
+}
+
+
+#varThirst > #boxSetThirst {	
+    border-radius: 55px;
+	/*background: rgb(80, 125, 181);*/
+}
+
+#varOxygen > #boxSetOxygen {
+	background: rgb(76, 91, 117);
+}
+
+#varStress > #boxSetStress {
+	background: rgb(192, 59, 59);
+}
+
+
+.stats{
+	z-index: 99 !important;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 65px;
+}
+
+.bar {
+	/*border-radius: 55px;*/
+    width: 35px;
+    height: 35px;
+	float: left;
+
+	/* padding: 2px; *//*
+	border: 2px solid rgba(255,255,255,0.8);*/
+	margin-right: 2px;
+    margin-left: 2px;
+    z-index: 8;
+}
+
+
+
+#boxSetHealth, #boxSetArmour, #boxSetHunger, #boxSetThirst, #boxSetOxygen, #boxSetStress {
+	width: 100%;
+	height: 35px;/*
+    border-radius: 55px;*//*
+	background: rgba(110, 110, 110, 0.5);*/
+	z-index: 97;
+	max-width: 200px;
+}
+
+.barIcon {
+    margin-top: -1px;
+	/*background: rgba(0, 0, 0, 0.8);*/
+    border-radius: 55px;
+    width: 35px;
+	z-index: 9;
+	/* padding: 5px; */
+}
+
+
+@media only screen and (max-width: 1680px){
+
+    .c-row{
+        max-width: 55vw;
+    }
+
+    .n-row{
+        max-width: 38.6vw;
+    }
+}
+
+@media only screen and (max-width: 1600px){
+
+    .c-row{
+        max-width: 60vw;
+    }
+
+    .n-row{
+        max-width: 42vw;
+    }
+}
+
+@media only screen and (max-width: 1400px){
+
+    .c-row{
+        max-width: 66vw;
+    }
+
+    .n-row{
+        max-width: 46vw;
+    }
+}
+
+@media only screen and (max-width: 1366px){
+
+    .c-row{
+        max-width: 67vw;
+    }
+
+    .n-row{
+        max-width: 48vw;
+    }
+
+    .n-col.space{
+        width: 276px;
+    }
+}
+
+@media only screen and (max-width: 1280px){
+
+    .c-row{
+        max-width: 68vw;
+    }
+
+    .n-row{
+        max-width: 49vw;
+    }
+
+    .n-col.space{
+        width: 254px;
+    }
+}
