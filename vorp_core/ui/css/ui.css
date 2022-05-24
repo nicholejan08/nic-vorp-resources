@@ -41,7 +41,7 @@ html, body {
     display: flex;
     align-items: center;
     max-width: 100px;
-    overflow-x: hidden;
+    overflow: hidden;
     height: 100%;
     font-size: 13px;
 }

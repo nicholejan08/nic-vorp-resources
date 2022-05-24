@@ -113,11 +113,11 @@ function GetCurentTownName()
     elseif town_hash == GetHashKey("wapiti") then
         return "Wapiti"
     elseif town_hash == GetHashKey("AguasdulcesFarm") then
-        return "Aguasdulces Farm"
+        return "Bicol"
     elseif town_hash == GetHashKey("AguasdulcesRuins") then
-        return "Aguasdulces Ruins"
+        return "Bicol"
     elseif town_hash == GetHashKey("AguasdulcesVilla") then
-        return "Aguasdulces Villa"
+        return "Bicol"
     elseif town_hash == GetHashKey("Manicato") then
         return "Manicato"
     elseif town_hash == GetHashKey("Guarma") then

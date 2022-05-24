@@ -14,7 +14,7 @@ Config = {
   initGroup                = "user", -- leave it like this
   Whitelist                = false, -- LEAVE TO FALSE IT'S NOT WORKING
   AllowWhitelistAutoUpdate = false,
-  MaxCharacters            = 5, --MAX ALLOWED TO BE CREATED
+  MaxCharacters            = 1, --MAX ALLOWED TO BE CREATED
   maxHealth                = 4, -- 10 is FULL 0 IS EMPTY define max outer core for players
   maxStamina               = 4, -- 10 is FULL 0 IS EMPTY define max outer core for players
 
@@ -114,7 +114,7 @@ Config = {
   HeadIdDistance = 15,
   ModeKey = true,
   KeyShowIds = "0x8CC9CD42", -- Press X
-  ActiveEagleEye = true,
+  ActiveEagleEye = false,
   ActiveDeadEye = false,
 
   ----------------------------------------------------------------------------
